@@ -1,0 +1,7 @@
+{
+  "name": "weatherForecast",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
