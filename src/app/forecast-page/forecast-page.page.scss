@@ -1,0 +1,16 @@
+.wrapper{
+    height: 100%;
+    width:  100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color:green;
+}
+.weatherDiv{
+    background-color: blue;
+    color:red;
+    padding: 20px;
+    border-radius: 8px;
+    width: 80%;
+    text-align: center;
+}

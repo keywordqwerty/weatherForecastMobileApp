@@ -8,13 +8,18 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: 'home',
+    redirectTo: 'forecast-page',
     pathMatch: 'full'
   },
   {
     path: 'settings-page',
     loadChildren: () => import('./settings-page/settings-page-routing.module').then( m => m.SettingsPagePageRoutingModule)
   },
+  {
+    path: 'forecast-page',
+    loadChildren: () => import('./forecast-page/forecast-page.module').then( m => m.ForecastPagePageModule)
+  },
+
 
 ];
 
