@@ -1,16 +1,44 @@
+ion-content {
+    --background: linear-gradient(to bottom, #ff6600,#6699ff);
+  }
+
 .wrapper{
     height: 100%;
     width:  100%;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    justify-content: flex-start;
     align-items: center;
-    background-color:green;
+    padding-top: 20%;
+    gap: 20px;
 }
+
+.topDiv{
+    padding: 20px;
+    background-color: rgb(255, 255, 255);
+    width: 80%;
+    border-radius: 8px;
+    text-align:center;
+    color:black;
+    margin-bottom: 20px;
+}
+
 .weatherDiv{
-    background-color: blue;
+    background-color: rgb(255, 255, 255);
     color:red;
     padding: 20px;
     border-radius: 8px;
     width: 80%;
     text-align: center;
+    margin-bottom: 20px;
+}
+
+.daysDiv{
+    background-color: rgb(255, 255, 255);
+    color:red;
+    padding: 20px;
+    border-radius: 8px;
+    width: 80%;
+    text-align: center;
+    
 }
