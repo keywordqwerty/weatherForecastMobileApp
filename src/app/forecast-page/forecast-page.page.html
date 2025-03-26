@@ -1,11 +1,43 @@
+<ion-menu contentId="main-content" menuId="main-menu" side="start">
+  <ion-header>
+    <ion-toolbar>
+      <ion-title>Menu Content</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content class="ion-padding">
+    <ion-list>
+      <ion-item routerLink="/home">Home</ion-item>
+      <ion-item routerLink="/forecast-page">Forecast</ion-item>
+    </ion-list>
+  </ion-content>
+</ion-menu>
+
+<div class="ion-page" id="main-content">
+  <ion-header>
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-menu-button menu="main-menu"></ion-menu-button>
+      </ion-buttons>
+      <ion-title>Forecast Page</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
 <ion-content>
   <div class="wrapper">
-    <div class="topDiv">TOP DIV</div>
+    <div class="topDiv">
+      <div id="cityTimeDiv">
+        <h2 id="cityName">City/Country</h2>
+        <h3 id="dayTime">Wed,May 26, Hour</h3>
+        <ion-buttons id="burgerMenu" slot="start">
+           <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+      </div>
+      <div id="temps">
+        <img src="" id="sunLogo"/>
+        <span id="temperature">25°C</span>
+      </div>
+    </div>
     <div class="weatherDiv">THIS IS A WEATHER DIV</div>
     <div class="daysDiv">THIS IS THE DAYS DIV</div>
-
-
-
-
   </div>
 </ion-content>
