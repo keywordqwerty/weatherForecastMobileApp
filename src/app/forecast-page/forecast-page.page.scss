@@ -100,6 +100,25 @@ ion-content {
   //  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
   }
 
+  .manualEntry {
+    margin-top: 20px;
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    color: black;
+  }
+  
+  ion-input {
+    --background: #fff;
+    --padding-start: 10px;
+    border-radius: 8px;
+  }
+  
+  ion-button {
+    --background: #3880ff;
+    --color: #fff;
+  }
 
 
 .daysDiv{

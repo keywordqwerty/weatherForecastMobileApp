@@ -26,8 +26,8 @@
   <div class="wrapper">
     <div class="topDiv">
       <div id="cityTimeDiv">
-        <h2 id="cityName">City/Country</h2>
-        <h3 id="dayTime">Wed,May 26, Hour</h3>
+        <h2 id="cityName">{{ cityName }}</h2>
+        <h3 id="dayTime">{{ dayTime }}</h3>
         <ion-buttons id="burgerMenu" slot="start">
            <ion-menu-button></ion-menu-button>
         </ion-buttons>
@@ -35,36 +35,65 @@
       <div id="temps">
        <!--  <img src="" id="sunLogo"/>  -->
         <i class="fa-solid fa-sun"></i>
-        <span id="temperature">25°C</span>
+        <span id="temperature">{{ weatherData?.temperature || 'N/A' }}</span>
       </div>
     </div>
+
+    <div class="manualEntry">
+      <ion-input
+      placeholder="Enter city name"
+      [(ngModel)]="manualCity"
+      clearInput
+      ></ion-input>
+      <ion-button expand="block" (click)="onManualCitySubmit()">Get Weather</ion-button>
+    </div> 
     <div class="weatherDiv">
       <div id="weather1">
-        Now<br>
+       <!-- Today<br>
         weather<br>
         humidity<br>
-        wind<br>
+        wind<br>  -->
+        <p>Now</p>
+        <p>Description: {{ weatherData?.description || 'N/A' }}</p>
+        <p>Humidity: {{ weatherData?.humidity || 'N/A' }}</p>
+        <p>Wind: {{ weatherData?.wind || 'N/A' }}</p>
 
       </div>
-      <div id="weather2">Weather2</div>
-      <div id="weather3">weather3</div>
-      <div id="weather4">weather4</div>
-      <div id="weather5">weather5</div>
+      <div id="weather2">
+        <p>Time: {{ hourlyWeather[0]?.time || 'N/A' }}</p>
+        <p>Description: {{ hourlyWeather[0]?.description || 'N/A' }}</p>
+        <p>Temperature: {{ hourlyWeather[0]?.temperature || 'N/A' }}</p>
+      </div>
+      <div id="weather3">
+        <p>Time: {{ hourlyWeather[1]?.time || 'N/A' }}</p>
+        <p>Description: {{ hourlyWeather[1]?.description || 'N/A' }}</p>
+        <p>Temperature: {{ hourlyWeather[1]?.temperature || 'N/A' }}</p>
+      </div>
+      <div id="weather4">
+        <p>Time: {{ hourlyWeather[2]?.time || 'N/A' }}</p>
+        <p>Description: {{ hourlyWeather[2]?.description || 'N/A' }}</p>
+        <p>Temperature: {{ hourlyWeather[2]?.temperature || 'N/A' }}</p>
+      </div>
+      <div id="weather5">
+        <p>Time: {{ hourlyWeather[3]?.time || 'N/A' }}</p>
+        <p>Description: {{ hourlyWeather[3]?.description || 'N/A' }}</p>
+        <p>Temperature: {{ hourlyWeather[3]?.temperature || 'N/A' }}</p>
+      </div>
     </div>
     <div class="daysDiv">THIS IS THE DAYS DIV
       <div id="days1">
         Now  --   --  --  --
       </div>
-      <div id="days1">
+      <div id="days2">
         Now --    --  --   --
       </div>
-      <div id="days1">
+      <div id="days3">
         Now --    --  --   --
       </div>
-      <div id="days1">
+      <div id="days4">
         Now --    --  --   --
       </div>
-      <div id="days1">
+      <div id="days5">
         Now --    --  --   --
       </div>
     </div>
