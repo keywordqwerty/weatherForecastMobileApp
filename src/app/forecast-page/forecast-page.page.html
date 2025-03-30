@@ -15,9 +15,6 @@
 <div class="ion-page" id="main-content">
   <ion-header>
     <ion-toolbar>
-      <ion-buttons slot="start">
-        <ion-menu-button menu="main-menu"></ion-menu-button>
-      </ion-buttons>
       <ion-title>Forecast Page</ion-title>
     </ion-toolbar>
   </ion-header>
@@ -29,7 +26,9 @@
         <h2 id="cityName">{{ cityName }}</h2>
         <h3 id="dayTime">{{ dayTime }}</h3>
         <ion-buttons id="burgerMenu" slot="start">
-           <ion-menu-button></ion-menu-button>
+          <ion-button (click)="onGearClick()">
+            <ion-icon name="settings-outline"></ion-icon>
+          </ion-button>
         </ion-buttons>
       </div>
       <div id="temps">
@@ -54,48 +53,122 @@
         humidity<br>
         wind<br>  -->
         <p>Now</p>
-        <p>Description: {{ weatherData?.description || 'N/A' }}</p>
-        <p>Humidity: {{ weatherData?.humidity || 'N/A' }}</p>
-        <p>Wind: {{ weatherData?.wind || 'N/A' }}</p>
+        <p> <i [class]="getWeatherIcon(weatherData?.description || '')"></i>
+         {{ weatherData?.description || 'N/A' }}</p>
+
+        <p><i class="fa-solid fa-droplet"></i>
+           {{ weatherData?.humidity || 'N/A' }}</p>
+
+        <p> <i class="fa-solid fa-wind"></i>
+           {{ weatherData?.wind || 'N/A' }}</p>
 
       </div>
       <div id="weather2">
-        <p>Time: {{ hourlyWeather[0]?.time || 'N/A' }}</p>
-        <p>Description: {{ hourlyWeather[0]?.description || 'N/A' }}</p>
-        <p>Temperature: {{ hourlyWeather[0]?.temperature || 'N/A' }}</p>
+        <p> {{ hourlyWeather[0]?.time || 'N/A' }}</p>
+
+        <p><i [class]="getWeatherIcon(hourlyWeather[0]?.description || '')"></i>
+         {{ hourlyWeather[0]?.description || 'N/A' }}</p>
+        
+        <p><i class="fa-solid fa-droplet"></i>
+         {{ hourlyWeather[0]?.humidity || 'N/A' }} </p>
+          
+        <p><i class="fa-solid fa-wind"></i>
+         {{ hourlyWeather[0]?.wind || 'N/A' }}</p>
       </div>
+
       <div id="weather3">
-        <p>Time: {{ hourlyWeather[1]?.time || 'N/A' }}</p>
-        <p>Description: {{ hourlyWeather[1]?.description || 'N/A' }}</p>
-        <p>Temperature: {{ hourlyWeather[1]?.temperature || 'N/A' }}</p>
+        <p> {{ hourlyWeather[1]?.time || 'N/A' }}</p>
+
+        <p><i [class]="getWeatherIcon(hourlyWeather[1]?.description || '')"></i>
+          {{ hourlyWeather[1]?.description || 'N/A' }}</p>
+
+        <p><i class="fa-solid fa-droplet"></i>
+           {{ hourlyWeather[1]?.humidity || 'N/A' }} </p>
+
+          <p><i class="fa-solid fa-wind"></i>
+           {{ hourlyWeather[1]?.wind || 'N/A' }}</p>
+
       </div>
       <div id="weather4">
-        <p>Time: {{ hourlyWeather[2]?.time || 'N/A' }}</p>
-        <p>Description: {{ hourlyWeather[2]?.description || 'N/A' }}</p>
-        <p>Temperature: {{ hourlyWeather[2]?.temperature || 'N/A' }}</p>
+        <p> {{ hourlyWeather[2]?.time || 'N/A' }}</p>
+
+        <p><i [class]="getWeatherIcon(hourlyWeather[2]?.description || '')"></i>
+          {{ hourlyWeather[2]?.description || 'N/A' }}</p>
+
+        <p><i class="fa-solid fa-droplet"></i>
+         {{ hourlyWeather[2]?.humidity || 'N/A' }} </p>
+
+        <p><i class="fa-solid fa-wind"></i>
+           {{ hourlyWeather[2]?.wind || 'N/A' }}</p>
       </div>
+
       <div id="weather5">
-        <p>Time: {{ hourlyWeather[3]?.time || 'N/A' }}</p>
-        <p>Description: {{ hourlyWeather[3]?.description || 'N/A' }}</p>
-        <p>Temperature: {{ hourlyWeather[3]?.temperature || 'N/A' }}</p>
+        <p> {{ hourlyWeather[3]?.time || 'N/A' }}</p>
+
+        <p><i [class]="getWeatherIcon(hourlyWeather[3]?.description || '')"></i>
+          {{ hourlyWeather[3]?.description || 'N/A' }}</p>
+
+       <p><i class="fa-solid fa-droplet"></i>
+         {{ hourlyWeather[3]?.humidity || 'N/A' }} </p>
+
+        <p><i class="fa-solid fa-wind"></i>
+         {{ hourlyWeather[3]?.wind || 'N/A' }}</p>
       </div>
     </div>
-    <div class="daysDiv">THIS IS THE DAYS DIV
-      <div id="days1">
-        Now  --   --  --  --
-      </div>
-      <div id="days2">
-        Now --    --  --   --
-      </div>
-      <div id="days3">
-        Now --    --  --   --
-      </div>
-      <div id="days4">
-        Now --    --  --   --
-      </div>
-      <div id="days5">
-        Now --    --  --   --
+
+    <div class="daysDiv">
+      <div *ngFor="let day of dailyWeather">
+        <p>{{ day.date }}</p>
+        <p>
+          <i [class]="day.icon"></i> {{ day.description }}
+        </p>
+        <p>
+          <i class="fa-solid fa-droplet"></i> {{ day.humidity }}
+        </p>
+        <p>
+          <i class="fa-solid fa-wind"></i> {{ day.wind }}
+        </p>
+        <p>
+          <i class="fa-solid fa-temperature-high"></i> {{ day.temperature }}
+        </p>
       </div>
     </div>
   </div>
+
+
+
+
+  <!--<ion-menu contentId="main-content" menuId="settings-menu" side="start">
+    <ion-header>
+      <ion-toolbar>
+        <ion-title>Settings</ion-title>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content class="ion-padding">
+      <div class="settings-container">
+        <ion-item>
+          <ion-label>Dark Mode</ion-label>
+          <ion-toggle [(ngModel)]="isDarkMode" (ionChange)="toggleDarkMode()"> </ion-toggle>
+        </ion-item>
+        <ion-item>
+          <ion-label>Severe Weather Alerts</ion-label>
+          <ion-toggle [(ngModel)]="areNotificationsEnabled" (ionChange)="toggleNotifications()"></ion-toggle>
+        </ion-item>
+        <ion-item>
+          <ion-label>Temperature Unit</ion-label>
+          <ion-segment [(ngModel)]="temperatureUnit" (ionChange)="changeTemperatureUnit()">
+            <ion-segment-button value="C">
+              <ion-label>°C</ion-label>
+            </ion-segment-button>
+            <ion-segment-button value="F">
+              <ion-label>°F</ion-label>
+            </ion-segment-button>
+          </ion-segment>
+        </ion-item>
+      </div>
+    </ion-content>
+  </ion-menu> -->
+
+
+
 </ion-content>

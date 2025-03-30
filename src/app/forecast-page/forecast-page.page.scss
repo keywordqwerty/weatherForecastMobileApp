@@ -1,6 +1,6 @@
-ion-content {
+/* ion-content {
     --background: linear-gradient(to bottom, #ff6600,#6699ff);
-  }
+  } */
 
 .wrapper{
     height: 100%;
@@ -88,6 +88,13 @@ ion-content {
    align-items: center;
 }
 
+.fa-solid {
+    color: #007bff;
+    font-size: 1.2rem;
+  }
+
+  
+
 .weatherDiv > div {
    // background-color: #f0f0f0; /* Light background for each weather div */
   //  color: #333; /* Text color */
@@ -120,18 +127,96 @@ ion-content {
     --color: #fff;
   }
 
+  
 
-.daysDiv{
-    display: flex;
-    background-color: rgb(255, 255, 255);
-    color:red;
+
+  .daysDiv {
+    display: flex; /* Use flexbox for horizontal layout */
+    flex-direction: row; /* Arrange child elements in a row */
+    justify-content: space-between; /* Space out the days evenly */
+    align-items: flex-start; /* Align items to the top */
+    gap: 20px; /* Add spacing between the days */
     padding: 20px;
-    border-radius: 8px;
-    width: 80%;
-    text-align: center;
-    justify-content: space-between;
-    height:auto;
-    flex-direction: column;
-    align-items: center;
-    
-}
+    background-color: #f9f9f9; /* Optional: Add a light background */
+    border-radius: 8px; /* Optional: Add rounded corners */
+    color: #333;
+  }
+
+//style modal
+.settings-container {
+    padding: 20px;
+    background-color: var(--ion-background-color); /* Use Ionic's background color variable */
+    color: var(--ion-text-color); /* Use Ionic's text color variable */
+  }
+  
+  .settings-container ion-item {
+    margin-bottom: 15px;
+  }
+  
+  .settings-container ion-segment {
+    margin-top: 10px;
+  }
+  
+  .settings-container ion-button {
+    margin-top: 20px;
+  }
+
+
+
+
+  /* Default styles */
+  ion-content{
+    --background: linear-gradient(to bottom, #ff6600,#6699ff);
+  }
+  .topDiv,
+  .weatherDiv,
+  .daysDiv {
+    background-color: #ffffff; /* Light background */
+    color: #000000; /* Black text */
+  }
+  
+  /* Dark mode styles */
+  /*.dark-mode ion-content{
+    --background: linear-gradient(to bottom, #000000,#000000);
+  }
+
+  body.dark-mode .wrapper {
+    --background: #121212;
+    color: #ff0000; 
+  } 
+  
+  body.dark-mode .topDiv,
+  body.dark-mode .weatherDiv,
+  body.dark-mode .daysDiv {
+    background-color: #1e1e1e; 
+    color: #ff0000; 
+  } */
+// Dark mode styles
+body.dark-mode {
+    ion-content {
+      --background: linear-gradient(to bottom, #222, #444) !important; // Darker background
+    }
+  
+    .topDiv,
+    .weatherDiv,
+    .daysDiv {
+      background-color: #1a1a1a; /* Dark background */
+      color: #ffffff; /* White text */
+    }
+  
+    ion-input {
+      --background: #333;
+      --color: #fff;
+    }
+  
+    ion-button {
+      --background: #555;
+      --color: #fff;
+    }
+  
+    .fa-solid {
+      color: #ffcc00; /* Change icon color in dark mode */
+    }
+  }
+  
+  

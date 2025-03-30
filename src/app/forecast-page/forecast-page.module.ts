@@ -16,6 +16,5 @@ import { ForecastPagePage } from './forecast-page.page';
     ForecastPagePageRoutingModule,
     ForecastPagePage,
   ],
-  
 })
 export class ForecastPagePageModule {}

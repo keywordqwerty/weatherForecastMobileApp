@@ -1,6 +1,11 @@
 <ion-header>
   <ion-toolbar color="blue">
-    <ion-title >Application Settings</ion-title>
+    <ion-buttons slot="start">
+      <ion-button (click)="goBack()">
+        <ion-icon slot="icon-only" name="arrow-back-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+      <ion-title >Application Settings</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -10,13 +15,13 @@
     <ion-list-header>Notification settings</ion-list-header>
     <ion-item>
       <ion-label>Enable Severe Weather alert notifications</ion-label>
-      <ion-toggle slot="end" [(ngModel)]="currentPreference.option1" name="option1" (ionChange)="savePreferences()"></ion-toggle>
+      <ion-toggle slot="end" [(ngModel)]="currentPreference.option1" name="option1"  (ionChange)="savePreferences()"></ion-toggle>
     </ion-item>
 
     <ion-list-header>Light settings</ion-list-header>
     <ion-item>
       <ion-label>Enable dark mode</ion-label>
-      <ion-toggle slot="end" [(ngModel)]="currentPreference.option2" name="option2" (ionChange)="savePreferences()"></ion-toggle>
+      <ion-toggle slot="end" [(ngModel)]="currentPreference.option2" name="option2"  (ionChange)="toggleDarkMode(); savePreferences()"></ion-toggle>
     </ion-item>
 
     <ion-list-header>Temperature settings</ion-list-header>

@@ -12,13 +12,18 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {
+   // path: 'settings-page',
+    //loadChildren: () => import('./settings-page/settings-page-routing.module').then( m => m.SettingsPagePageRoutingModule)
     path: 'settings-page',
-    loadChildren: () => import('./settings-page/settings-page-routing.module').then( m => m.SettingsPagePageRoutingModule)
+    loadComponent: () =>
+      import('./settings-page/settings-page.page').then((m) => m.SettingsPagePage), // Load the standalone component
   },
+  
   {
     path: 'forecast-page',
     loadChildren: () => import('./forecast-page/forecast-page.module').then( m => m.ForecastPagePageModule)
   },
+  
 
 
 ];

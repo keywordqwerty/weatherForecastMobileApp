@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { SettingsPagePage } from './settings-page.page';
 
 const routes: Routes = [
   {
     path: '',
-    component: SettingsPagePage
-  }
+    loadComponent: () =>
+      import('./settings-page.page').then((m) => m.SettingsPagePage), // Load the standalone component
+  },
 ];
 
 @NgModule({
