@@ -25,16 +25,15 @@
     </ion-item>
 
     <ion-list-header>Temperature settings</ion-list-header>
-    <ion-radio-group [(ngModel)]="currentPreference.radioValue" name="radioValue" (ionChange)="savePreferences()">
+    <ion-radio-group [(ngModel)]="currentPreference.radioValue" name="radioValue" (ionChange)="saveTemperatureUnit()">
       <ion-item>
         <ion-label>Celcius</ion-label>
-        <ion-radio slot="start" value="option1"></ion-radio>
+        <ion-radio slot="start" value="C"></ion-radio>
       </ion-item>
       <ion-item>
         <ion-label>Fahrenheit</ion-label>
-        <ion-radio slot="start" value="option2"></ion-radio>
+        <ion-radio slot="start" value="F"></ion-radio>
       </ion-item>
-
     </ion-radio-group>
 
     <ion-button color="medium" expand="block" type="submit" (click)="savePreferences()">Save Preferences</ion-button>

@@ -17,7 +17,7 @@ export class SettingsPagePage implements OnInit {
   currentPreference: UserPreferences = {
     option1: false,
     option2: false,
-    radioValue: 'option1'
+    radioValue: 'C'
   };
   
 
@@ -33,8 +33,8 @@ export class SettingsPagePage implements OnInit {
       key: 'userPreferences',
       value: JSON.stringify(this.currentPreference),
     })
-   // await this.preferencesService.savePreferences(this.currentPreference);
-   // console.log('User Preference saved:', this.currentPreference);
+    await this.preferencesService.savePreferences(this.currentPreference);
+    console.log('User Preference saved:', this.currentPreference);
   }
 
   async resetPreferences(){
@@ -58,6 +58,11 @@ export class SettingsPagePage implements OnInit {
       document.body.classList.remove('dark-mode');
       console.log('Dark mode off');
     }
+  }
+
+  saveTemperatureUnit() {
+    localStorage.setItem('temperatureUnit', this.currentPreference.radioValue); // Save the selected unit
+    console.log('Temperature unit saved:', this.currentPreference.radioValue);
   }
 
   goBack(){

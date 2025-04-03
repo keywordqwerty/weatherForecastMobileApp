@@ -38,7 +38,7 @@
       </div>
     </div>
 
-    <div class="manualEntry">
+   <!--<div class="manualEntry">
       <ion-input
       placeholder="Enter city name"
       [(ngModel)]="manualCity"
@@ -46,6 +46,23 @@
       ></ion-input>
       <ion-button expand="block" (click)="onManualCitySubmit()">Get Weather</ion-button>
     </div> 
+    --> 
+
+    <div class="manualEntry">
+      <ion-input
+        placeholder="Enter city name"
+        [(ngModel)]="manualCity"
+        (ionInput)="onCityInput($event)"
+        clearInput
+      ></ion-input>
+      <ion-list *ngIf="citySuggestions.length > 0">
+        <ion-item *ngFor="let city of citySuggestions" (click)="selectCity(city)">
+          {{ city.name }}, {{ city.country }}
+        </ion-item>
+      </ion-list>
+      <ion-button expand="block" (click)="onManualCitySubmit()">Get Weather</ion-button>
+    </div>
+
     <div class="weatherDiv">
       <div id="weather1">
        <!-- Today<br>

@@ -16,7 +16,7 @@ export class PreferencesService {
   private defaultPreferences: UserPreferences = {
     option1: false,
     option2: false,
-    radioValue: 'option1',
+    radioValue: 'C',
   };
 
   //uses this object to hold the real preferences of the user
