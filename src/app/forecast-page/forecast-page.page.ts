@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Geolocation } from '@capacitor/geolocation'
 import { Router } from '@angular/router';
+import { AlertController } from '@ionic/angular';
 import axios from 'axios';
 
 
@@ -30,7 +31,7 @@ export class ForecastPagePage implements OnInit {
   areNotificationsEnabled: boolean = false; // Tracks notification state
   temperatureUnit: 'C' | 'F' = 'C'; // Tracks temperature unit
   //=================================
-  constructor(private router: Router) {}
+  constructor(private router: Router, private alertController: AlertController) {}
 
  async ngOnInit() {
   await this.getCurrentLocationWeather();
@@ -77,6 +78,22 @@ export class ForecastPagePage implements OnInit {
     }
     //WEATHERDATA---------------------
 
+    //SEVERE WEATHER NOTIFICATIONS----------
+      /* simulation for severe weather for testing
+  this.weatherData = {
+    description: 'storm', 
+    temperature: '25°C',
+    humidity: '80%',
+    wind: '10 m/s',
+  }; */
+
+    const savedNotifications = localStorage.getItem('areNotificationsEnabled');
+    this.areNotificationsEnabled = savedNotifications === 'true'; // Check if notifications are enabled
+    console.log('Severe Weather Notifications Enabled:', this.areNotificationsEnabled);
+     if (this.areNotificationsEnabled) {
+    this.checkForSevereWeatherAlerts();
+  }
+    //SEVERE WEATHER NOTIFICATIONS----------
 
     //TEMPS-----------
     console.log("SAVED TEMPERATURE UNIT: ", localStorage.getItem('temperatureUnit'));
@@ -170,6 +187,35 @@ export class ForecastPagePage implements OnInit {
     console.log('Temperature Unit Changed:', this.temperatureUnit);
     localStorage.setItem('temperatureUnit', this.temperatureUnit);
     // Update temperature display logic here if needed
+  }
+
+  //SEVERE WEATHER ALERT CHECKER------------
+  checkForSevereWeatherAlerts() {
+    if (!this.weatherData) {
+      console.log('No weather data available to check for alerts.');
+      return;
+    }
+  
+    const severeConditions = ['storm', 'thunderstorm', 'tornado', 'hurricane', 'heavy rain', 'snow'];
+    const currentCondition = this.weatherData.description.toLowerCase();
+  
+    const isSevere = severeConditions.some(condition => currentCondition.includes(condition));
+    if (isSevere) {
+      this.showSevereWeatherAlert(currentCondition);
+    } else {
+      console.log('No severe weather conditions detected.');
+    }
+  }
+  //SEVERE WEATHER ALERT CHECKER----------------
+
+  async showSevereWeatherAlert(condition: string) {
+    const alert = await this.alertController.create({
+      header: 'Severe Weather Alert',
+      message: `Severe weather detected: ${condition}. Please take precautions!`,
+      buttons: ['OK'],
+    });
+  
+    await alert.present();
   }
 
 
@@ -329,26 +375,7 @@ selectCity(city: any) {
           wind: `${hourData.wind.speed} m/s`,
           description: hourData.weather[0].description,
         });
-      }
-    
-      /*this.hourlyWeather = [];
-      for (let i = 0; i < 4; i++) {
-        const hourData = data.list[i];
-        const utcTimestamp = hourData.dt * 1000; // Convert to milliseconds
-        const localTimestamp = utcTimestamp + timezoneOffset * 1000;
-    
-        this.hourlyWeather.push({
-          time: new Date(localTimestamp).toLocaleTimeString('en-US', {
-            hour: '2-digit',
-            minute: '2-digit',
-          }),
-          temperature: `${Math.round(hourData.main.temp)}°C`,
-          humidity: `${hourData.main.humidity}%`,
-          wind: `${hourData.wind.speed} m/s`,
-          description: hourData.weather[0].description,
-        });
-      }*/
-    
+      }  
 
 
       // Update daily weather
@@ -356,18 +383,6 @@ selectCity(city: any) {
       const dailyData: any[] = [];
       const seenDates = new Set();
     
-      // Extract one forecast per day (first available entry for each day)
-      /*data.list.forEach((item: any) => {
-        const utcTimestamp = item.dt * 1000; // Convert to milliseconds
-        const localTimestamp = utcTimestamp + timezoneOffset * 1000;
-        const date = new Date(localTimestamp).toLocaleDateString('en-US');
-    
-        // Add the first entry for each day
-        if (!seenDates.has(date)) {
-          dailyData.push(item);
-          seenDates.add(date);
-        }
-      });*/
 
       data.list.forEach((item: any) => {
         const date = new Date(item.dt * 1000).toLocaleDateString('en-US');

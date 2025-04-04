@@ -65,7 +65,14 @@ export class SettingsPagePage implements OnInit {
     console.log('Temperature unit saved:', this.currentPreference.radioValue);
   }
 
+  saveNotificationPreference() {
+    localStorage.setItem('areNotificationsEnabled', String(this.currentPreference.option1)); // Save the state
+    console.log('Severe Weather Notifications Enabled:', this.currentPreference.option1);
+  }
+
   goBack(){
     this.router.navigate(['/forecast-page']);
   }
+
+
 }
