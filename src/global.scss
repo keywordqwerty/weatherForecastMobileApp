@@ -60,5 +60,13 @@ body {
   }
 
   body.dark-mode ion-label{
-   color:white;
+   color:rgb(46, 40, 40);
+  }
+
+  body:not(.dark-mode) ion-label {
+    color: #000000; /* Black text */
+  }
+
+  body:not(.dark-mode) ion-item {
+    --color: #000000; /* Black text for items */
   }
