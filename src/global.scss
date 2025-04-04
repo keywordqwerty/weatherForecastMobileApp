@@ -35,3 +35,30 @@
 /* @import "@ionic/angular/css/palettes/dark.always.css"; */
 /* @import "@ionic/angular/css/palettes/dark.class.css"; */
 @import "@ionic/angular/css/palettes/dark.system.css";
+
+/* Default light mode styles */
+ion-content{
+    --background: linear-gradient(to bottom, #ff6600,#6699ff);
+  }
+
+/* Dark mode styles */
+body {
+    
+    --ion-text-color: #ffffff;
+  }
+  
+  /* Dark mode styles */
+  body.dark-mode {
+    --ion-background-color: #121212; /* Dark background */
+    --ion-text-color: #ffffff; /* Light text */
+  }
+  
+  /* Apply the background and text colors globally */
+  body.dark-mode ion-content{
+    --background: linear-gradient(to bottom, #000000,#6699ff);
+    --color: white;
+  }
+
+  body.dark-mode ion-label{
+   color:white;
+  }
