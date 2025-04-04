@@ -79,8 +79,8 @@ export class ForecastPagePage implements OnInit {
     //WEATHERDATA---------------------
 
     //SEVERE WEATHER NOTIFICATIONS----------
-      /* simulation for severe weather for testing
-  this.weatherData = {
+     /*simulation for severe weather for testing
+    this.weatherData = {
     description: 'storm', 
     temperature: '25°C',
     humidity: '80%',
