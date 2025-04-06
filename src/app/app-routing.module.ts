@@ -16,7 +16,7 @@ const routes: Routes = [
     //loadChildren: () => import('./settings-page/settings-page-routing.module').then( m => m.SettingsPagePageRoutingModule)
     path: 'settings-page',
     loadComponent: () =>
-      import('./settings-page/settings-page.page').then((m) => m.SettingsPagePage), // Load the standalone component
+      import('./settings-page/settings-page.page').then((m) => m.SettingsPagePage), 
   },
   
   {

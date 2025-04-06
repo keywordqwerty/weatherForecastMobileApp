@@ -6,7 +6,7 @@ import { Geolocation } from '@capacitor/geolocation'
 import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 import axios from 'axios';
-
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 
 @Component({
@@ -14,6 +14,7 @@ import axios from 'axios';
   templateUrl: './forecast-page.page.html',
   styleUrls: ['./forecast-page.page.scss'],
   standalone: true,
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   imports: [IonicModule, FormsModule, CommonModule],
 })
 export class ForecastPagePage implements OnInit {
@@ -23,7 +24,7 @@ export class ForecastPagePage implements OnInit {
   weatherData: any = null;
   hourlyWeather: any[] = [];
   dailyWeather: any[] = [];
-  citySuggestions: any[] = []; // To store city suggestions
+  citySuggestions: any[] = []; 
 
   //=======SETTINGS MODAL============
   isSettingsOpen: boolean = false; // Controls the modal visibility
@@ -48,7 +49,7 @@ export class ForecastPagePage implements OnInit {
    console.log('Dark Mode State on Init: ', this.isDarkMode);
    this.temperatureUnit = (savedTemperatureUnit as 'C' | 'F') || 'C';
 
-   // Apply dark mode class if dark mode is enabled
+   
     if (this.isDarkMode) {
       document.body.classList.add('dark-mode');
       console.log('Dark mode calss added to body');
@@ -59,11 +60,11 @@ export class ForecastPagePage implements OnInit {
   }
 
 
-  // Called every time the page is about to enter and become active
+  
   ionViewWillEnter() {
 
     //WEATHERDATA-----------------
-     // Check for cached weather data
+     
     const cachedData = localStorage.getItem('cachedWeatherData');
     if (cachedData) {
       const parsedData = JSON.parse(cachedData);
@@ -78,17 +79,10 @@ export class ForecastPagePage implements OnInit {
     }
     //WEATHERDATA---------------------
 
-    //SEVERE WEATHER NOTIFICATIONS----------
-     /*simulation for severe weather for testing
-    this.weatherData = {
-    description: 'storm', 
-    temperature: '25°C',
-    humidity: '80%',
-    wind: '10 m/s',
-  }; */
-
+ 
+    //SEVERE WEATHER NOTIFICATIONS---------
     const savedNotifications = localStorage.getItem('areNotificationsEnabled');
-    this.areNotificationsEnabled = savedNotifications === 'true'; // Check if notifications are enabled
+    this.areNotificationsEnabled = savedNotifications === 'true'; 
     console.log('Severe Weather Notifications Enabled:', this.areNotificationsEnabled);
      if (this.areNotificationsEnabled) {
     this.checkForSevereWeatherAlerts();
@@ -97,20 +91,20 @@ export class ForecastPagePage implements OnInit {
 
     //TEMPS-----------
     console.log("SAVED TEMPERATURE UNIT: ", localStorage.getItem('temperatureUnit'));
-    const savedTemperatureUnit = localStorage.getItem('temperatureUnit') || 'C'; // Default to Celsius
+    const savedTemperatureUnit = localStorage.getItem('temperatureUnit') || 'C'; 
     
-    this.temperatureUnit = savedTemperatureUnit as 'C' | 'F'; // Update the temperature unit
+    this.temperatureUnit = savedTemperatureUnit as 'C' | 'F'; 
     console.log('Temperature unit retrieved:', this.temperatureUnit);
 
     //temp conversion
     this.updateTemperatureUnit();
-
     //TEMPS------------
+
     //DARK MODE---------------
     const savedDarkMode = localStorage.getItem('isDarkMode');
-    this.isDarkMode = savedDarkMode === 'true'; // Check for 'true'
+    this.isDarkMode = savedDarkMode === 'true'; 
 
-    // Apply dark mode class if dark mode is enabled
+   
     if (this.isDarkMode) {
       document.body.classList.add('dark-mode');
       console.log('Dark mode class added to body');
@@ -158,7 +152,7 @@ export class ForecastPagePage implements OnInit {
     }
   }
 
-  // Method to open the settings modal
+  
   openSettings() {
     console.log('Opening settings modal...');
     this.isSettingsOpen = true;
@@ -169,24 +163,24 @@ export class ForecastPagePage implements OnInit {
     this.isSettingsOpen = false;
   }
 
-  // Method to toggle dark mode
+
   toggleDarkMode(isDarkMode: boolean) {
     console.log('Dark Mode Toggled:', this.isDarkMode);
     document.body.classList.toggle('dark', this.isDarkMode);
     localStorage.setItem('isDarkMode', String(this.isDarkMode));
   }
 
-  // Method to toggle severe weather notifications
+  
   toggleNotifications() {
     console.log('Notifications Toggled:', this.areNotificationsEnabled);
     localStorage.setItem('areNotificationsEnabled', String(this.areNotificationsEnabled));
   }
 
-  // Method to change the temperature unit
+ 
   changeTemperatureUnit() {
     console.log('Temperature Unit Changed:', this.temperatureUnit);
     localStorage.setItem('temperatureUnit', this.temperatureUnit);
-    // Update temperature display logic here if needed
+  
   }
 
   //SEVERE WEATHER ALERT CHECKER------------
@@ -221,7 +215,6 @@ export class ForecastPagePage implements OnInit {
 
 
   //CITY SUGGESTIONS------------------------
-  // Fetch city suggestions based on user input
 async onCityInput(event: any) {
   const query = event.target.value;
   if (query.trim().length === 0) {
@@ -244,10 +237,10 @@ async onCityInput(event: any) {
   }
 }
 
-// Handle city selection from suggestions
+
 selectCity(city: any) {
   this.manualCity = city.name;
-  this.citySuggestions = []; // Clear suggestions after selection
+  this.citySuggestions = []; 
 }
 //CITY SUGGESTIONS------------------------
 
@@ -255,7 +248,7 @@ selectCity(city: any) {
   async getCurrentLocationWeather() {
     //CACHING WEATHER----------
     try {
-      // Check if the device is online
+      
       if (!navigator.onLine) {
         console.warn('Device is offline. Loading cached weather data.');
         const cachedData = localStorage.getItem('cachedWeatherData');
@@ -348,7 +341,7 @@ selectCity(city: any) {
         wind: `${currentWeather.wind.speed} m/s`,
       };
 
-       // Save the weather data to localStorage
+    
         localStorage.setItem('cachedWeatherData', JSON.stringify({
         cityName: this.cityName,
         weatherData: this.weatherData,
@@ -358,10 +351,10 @@ selectCity(city: any) {
 
       console.log('Weather data cached:', localStorage.getItem('cachedWeatherData'));
      
-      // Get the timezone offset (in seconds) from the API response
-      const timezoneOffset = data.city.timezone; // Offset in seconds
+      
+      const timezoneOffset = data.city.timezone; 
     
-      // Update hourly weather
+     
       this.hourlyWeather = [];
       for (let i = 0; i < 4; i++) {
         const hourData = data.list[i];
@@ -378,7 +371,7 @@ selectCity(city: any) {
       }  
 
 
-      // Update daily weather
+     
       this.dailyWeather = [];
       const dailyData: any[] = [];
       const seenDates = new Set();
@@ -393,9 +386,9 @@ selectCity(city: any) {
       });
     
     
-      // Populate dailyWeather array
+      // populate dailyWeather array
       dailyData.forEach((day: any) => {
-        const localTimestamp = day.dt * 1000 + timezoneOffset * 1000;
+        const localTimestamp = day.dt * 1000; // Use the raw timestamp from the API
         this.dailyWeather.push({
           date: new Date(localTimestamp).toLocaleDateString('en-US', {
             weekday: 'long',
@@ -404,12 +397,12 @@ selectCity(city: any) {
           humidity: `${day.main.humidity}%`,
           wind: `${day.wind.speed} m/s`,
           description: day.weather[0].description,
-          icon: this.getWeatherIcon(day.weather[0].description), // Get icon for weather
+          icon: this.getWeatherIcon(day.weather[0].description), 
         });
       });
       
       this.updateTemperatureUnit();
-      console.log('Daily Weather:', this.dailyWeather); // Debugging: Log dailyWeather array
+      console.log('Daily Weather:', this.dailyWeather); 
     }
 
 
@@ -445,7 +438,7 @@ selectCity(city: any) {
     } else if (lowerDescription.includes('mist') || lowerDescription.includes('fog')) {
       return 'fa-solid fa-smog'; // Fog/Mist icon
     }
-    return 'fa-solid fa-question'; // Default icon for unknown description
+    return 'fa-solid fa-question'; // for unknown description
   }
 
   onGearClick() {

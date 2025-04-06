@@ -12,14 +12,14 @@ export interface UserPreferences{
 })
 export class PreferencesService {
 
-  //create object for default settings using the structure of UserPreferences
+  
   private defaultPreferences: UserPreferences = {
     option1: false,
     option2: false,
     radioValue: 'C',
   };
 
-  //uses this object to hold the real preferences of the user
+  //REAL PREFERENCES OF USER FROM STRUCTURE OF DEFAULT PREFERENCES 
   private preferences: UserPreferences = {...this.defaultPreferences};
 
   constructor() { 

@@ -6,7 +6,7 @@ const routes: Routes = [
   {
     path: '',
     loadComponent: () =>
-      import('./settings-page.page').then((m) => m.SettingsPagePage), // Load the standalone component
+      import('./settings-page.page').then((m) => m.SettingsPagePage), 
   },
 ];
 

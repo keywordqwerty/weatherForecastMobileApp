@@ -1,12 +1,12 @@
 .back-button-container {
     position: absolute;
-    top: 10px; /* Adjust the top position as needed */
-    left: 10px; /* Adjust the left position as needed */
-    z-index: 10; /* Ensure it stays above other elements */
+    top: 10px; 
+    left: 10px; 
+    z-index: 10; 
     
   }
   
   ion-button {
-    --background: transparent; /* Remove background color */
-    --color: var(--ion-text-color); /* Use the current text color */
+    --background: transparent; 
+    --color: var(--ion-text-color); 
   }

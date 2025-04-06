@@ -36,24 +36,32 @@
 /* @import "@ionic/angular/css/palettes/dark.class.css"; */
 @import "@ionic/angular/css/palettes/dark.system.css";
 
-/* Default light mode styles */
+// Default 
 ion-content{
     --background: linear-gradient(to bottom, #ff6600,#6699ff);
+    --color: black;
   }
 
-/* Dark mode styles */
-body {
-    
-    --ion-text-color: #ffffff;
-  }
+  /* Light mode */
+body:not(.dark-mode) ion-item {
+  --background: #ffffff; 
+  --color: #000000; 
+}
+
+body:not(.dark-mode) ion-label {
+  --color: #ffffff; 
+}
+
+
+
   
-  /* Dark mode styles */
+  /* Dark mode */
   body.dark-mode {
-    --ion-background-color: #121212; /* Dark background */
-    --ion-text-color: #ffffff; /* Light text */
+    --ion-background-color: #121212; 
+    --ion-text-color: #ffffff; 
   }
   
-  /* Apply the background and text colors globally */
+  
   body.dark-mode ion-content{
     --background: linear-gradient(to bottom, #000000,#6699ff);
     --color: white;
@@ -63,10 +71,12 @@ body {
    color:rgb(46, 40, 40);
   }
 
-  body:not(.dark-mode) ion-label {
-    color: #000000; /* Black text */
-  }
+ // body:not(.dark-mode) ion-label {
+  //  --color: #000000; 
+ // } 
 
-  body:not(.dark-mode) ion-item {
-    --color: #000000; /* Black text for items */
-  }
+
+ // body:not(.dark-mode) ion-item {
+  // --color: #ffffff; /* Black text for items */
+  // --background: black;
+ // } 

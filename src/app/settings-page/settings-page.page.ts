@@ -48,8 +48,8 @@ export class SettingsPagePage implements OnInit {
 
   toggleDarkMode() {
     console.log("Hello");
-   // this.currentPreference.option2 = !this.currentPreference.option2; // Toggle the dark mode state
-    localStorage.setItem('isDarkMode', String(this.currentPreference.option2)); // Save the state
+   
+    localStorage.setItem('isDarkMode', String(this.currentPreference.option2)); 
 
     if (this.currentPreference.option2) {
       document.body.classList.add('dark-mode');
@@ -61,12 +61,12 @@ export class SettingsPagePage implements OnInit {
   }
 
   saveTemperatureUnit() {
-    localStorage.setItem('temperatureUnit', this.currentPreference.radioValue); // Save the selected unit
+    localStorage.setItem('temperatureUnit', this.currentPreference.radioValue); 
     console.log('Temperature unit saved:', this.currentPreference.radioValue);
   }
 
   saveNotificationPreference() {
-    localStorage.setItem('areNotificationsEnabled', String(this.currentPreference.option1)); // Save the state
+    localStorage.setItem('areNotificationsEnabled', String(this.currentPreference.option1)); 
     console.log('Severe Weather Notifications Enabled:', this.currentPreference.option1);
   }
 
