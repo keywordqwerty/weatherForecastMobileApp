@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 import axios from 'axios';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-forecast-page',
@@ -223,9 +223,9 @@ async onCityInput(event: any) {
   }
 
   try {
-    const apiKey = '';
+    
     const response = await axios.get(
-      `https://api.openweathermap.org/data/2.5/find?q=${query}&type=like&sort=population&cnt=5&appid=${apiKey}`
+      `https://api.openweathermap.org/data/2.5/find?q=${query}&type=like&sort=population&cnt=5&appid=${environment.apiKey}`
     );
     this.citySuggestions = response.data.list.map((city: any) => ({
       name: city.name,
@@ -293,18 +293,18 @@ selectCity(city: any) {
   }
 
     async fetchWeatherByCoordinates(latitude: number, longitude: number) {
-      const apiKey = '';
+      
       const response = await axios.get(
-        `https://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&units=metric&appid=${apiKey}`
+        `https://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&units=metric&appid=${environment.apiKey}`
       );
       this.updateWeatherData(response.data);
     }
 
     async fetchWeatherByCity(city: string) {
       try {
-        const apiKey = '';
+        
         const response = await axios.get(
-          `https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=metric&appid=${apiKey}`
+          `https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=metric&appid=${environment.apiKey}`
         );
     
         if (!response.data || !response.data.list) {
